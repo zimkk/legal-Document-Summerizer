@@ -1,0 +1,197 @@
+LEGAL DOCUMENT SUMMARIZATION SYSTEM
+DEVELOPER GUIDE REPORT
+
+Prepared by: [Your Name]
+Date: [Current Date]
+
+EXECUTIVE SUMMARY
+----------------
+This report provides comprehensive documentation for the Legal Document Summarization System, detailing both user and developer instructions. The system utilizes advanced language models to process and summarize legal documents, with a cloud-based training pipeline and local document processing capabilities.
+
+TABLE OF CONTENTS
+----------------
+1. System Overview
+2. Technical Requirements
+3. Installation Guide
+4. Dataset Specifications
+5. Development Process
+6. System Operation
+7. Troubleshooting Guide
+8. Technical Specifications
+9. Security and Performance
+
+1. SYSTEM OVERVIEW
+-----------------
+The Legal Document Summarization System is a comprehensive solution for processing and analyzing legal documents. The system consists of two primary components:
+- Model Training Pipeline (Cloud-based)
+- Local Document Processing System
+
+2. TECHNICAL REQUIREMENTS
+------------------------
+2.1 Software Prerequisites
+    - Python 3.8 or higher
+    - CUDA-compatible GPU (16GB+ VRAM recommended)
+    - Ollama (latest stable version)
+    - Git
+
+2.2 Python Dependencies
+    Required packages with version specifications:
+    - flask
+    - torch >= 2.0.0
+    - transformers >= 4.30.0
+    - tokenizers >= 0.13.3
+    - accelerate >= 0.20.0
+    - bitsandbytes >= 0.39.0
+    - protobuf >= 3.20.0
+    - numpy >= 1.24.0
+    - pandas >= 2.0.0
+    - python-docx >= 0.8.11
+    - pdf2image >= 1.16.3
+    - pytesseract >= 0.3.10
+    - sentence-transformers >= 2.2.2
+    - requests >= 2.31.0
+
+3. INSTALLATION GUIDE
+--------------------
+3.1 Repository Setup
+    Step 1: Clone the repository
+    Command: git clone <repository-url>
+    Command: cd legal-ai
+
+3.2 Environment Setup
+    Step 1: Create virtual environment
+    Windows:
+    Command: python -m venv venv
+    Command: venv\Scripts\activate
+
+    Linux/Mac:
+    Command: python -m venv venv
+    Command: source venv/bin/activate
+
+3.3 Dependencies Installation
+    Command: pip install -r requirements.txt
+
+3.4 Ollama Installation
+    - Download from https://ollama.ai/
+    - Install appropriate OS version
+    - Start Ollama service
+
+4. DATASET SPECIFICATIONS
+------------------------
+4.1 Training Dataset (BillSum)
+    Dataset Distribution:
+    - Training Set: 18,949 documents
+    - Validation Set: 3,269 documents
+    - Test Set: 3,269 documents
+
+4.2 Dataset Preparation Process
+    The prepare_legal_dataset.py script performs:
+    1. BillSum dataset download
+    2. Data processing and cleaning
+    3. Dataset splitting (70/15/15)
+    4. Storage in datasets/billsum_data.json
+
+5. DEVELOPMENT PROCESS
+---------------------
+5.1 Cloud Environment Setup
+    Required Files:
+    - prepare_legal_dataset.py
+    - fine_tune_llama3.py
+    - convert_to_ollama.py
+
+5.2 Model Training Steps
+    1. Dataset Preparation
+       Command: python prepare_legal_dataset.py
+
+    2. Model Fine-tuning
+       Command: python fine_tune_llama3.py
+
+    3. Model Conversion
+       Command: python convert_to_ollama.py
+
+5.3 Local Development Setup
+    1. Model Initialization
+       Command: ollama run legal-summarizer
+       Command: ollama pull gemma3:4b
+
+    2. Application Launch
+       Command: python app.py
+       Access: http://localhost:5000
+
+6. SYSTEM OPERATION
+------------------
+6.1 Web Application Usage
+    1. Server Initialization
+       Command: python app.py
+
+    2. Document Processing
+       - Upload PDF/DOCX files
+       - Automatic processing
+       - Summary generation
+       - Verification using gemma3:4b model
+       - Results display with assessment
+
+6.2 Command Line Interface
+    Command: python main.py [path_to_documents]
+
+7. TROUBLESHOOTING GUIDE
+-----------------------
+7.1 Common Issues and Solutions
+
+    A. CUDA Errors
+       - Verification: nvidia-smi
+       - GPU compatibility check
+       - VRAM verification
+
+    B. Model Loading Issues
+       - Ollama status: ollama list
+       - Model availability check
+       - Disk space verification
+
+    C. Document Processing Errors
+       - File format verification
+       - Permission checks
+       - Memory availability
+
+7.2 Support Resources
+    1. Project issue tracker
+    2. Documentation review
+    3. Development team contact
+
+8. TECHNICAL SPECIFICATIONS
+--------------------------
+Version Requirements:
+- Python: 3.8+
+- PyTorch: 2.0.0+
+- Transformers: 4.30.0+
+- CUDA: 11.7+ (GPU systems)
+- Ollama: Latest stable version
+
+9. SECURITY AND PERFORMANCE
+--------------------------
+9.1 Security Guidelines
+    1. API key protection
+    2. Environment variable usage
+    3. Input validation
+    4. Error handling
+    5. Web security practices
+
+9.2 Performance Optimization
+    1. VRAM-based batch sizing
+    2. Multi-threaded processing
+    3. Data caching
+    4. Model optimization
+    5. Resource monitoring
+
+CONCLUSION
+----------
+This developer guide provides all necessary information for setting up, developing, and maintaining the Legal Document Summarization System. Following these guidelines ensures proper system operation and result reproducibility.
+
+APPENDIX
+--------
+A. Command Reference
+B. Configuration Files
+C. Error Codes
+D. Contact Information
+
+[End of Report] 
